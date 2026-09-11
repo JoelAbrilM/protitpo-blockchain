@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Prototipo conceptual de servicios académicos certificados con blockchain para la Universidad para la Paz." />
+    <title>UPAZ Chain | Servicios Académicos Verificables</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div class="app-shell">
+        <aside class="sidebar" id="sidebar">
+            <a class="brand" href="#dashboard" aria-label="UPAZ Chain">
+                <div class="brand-logo-wrap">
+                    <img src="https://moria.aurens.com/organizations/977f05bc-2c7d-4b08-9d7a-5b0453e40642/logos/847027-104.png"
+                        alt="Universidad para la Paz" class="brand-logo" />
+                </div>
+                <div>
+                    <span class="brand-kicker">University for Peace</span>
+                    <strong>UPAZ Chain</strong>
+                </div>
+            </a>
+
+            <nav class="side-nav" aria-label="Navegación principal">
+                <button class="nav-item active" data-section="dashboard">
+                    <span class="nav-icon">⌂</span>
+                    <span>Inicio</span>
+                </button>
+                <button class="nav-item" data-section="wallet">
+                    <span class="nav-icon">◫</span>
+                    <span>Mi Wallet</span>
+                </button>
+                <button class="nav-item" data-section="request">
+                    <span class="nav-icon">＋</span>
+                    <span>Solicitar certificado</span>
+                </button>
+                <button class="nav-item" data-section="verify">
+                    <span class="nav-icon">✓</span>
+                    <span>Verificación pública</span>
+                </button>
+                <button class="nav-item" data-section="qr">
+                    <span class="nav-icon">⌗</span>
+                    <span>Escanear QR</span>
+                </button>
+                <button class="nav-item" onclick="window.location.href='https://kolbicertifica.ice.go.cr/'">
+                    <span class="nav-icon">o</span>
+                    <span>kölbi Certificados D</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-card">
+                <span class="status-dot"></span>
+                <div>
+                    <small>Red académica</small>
+                    <strong>Operativa</strong>
+                </div>
+                <span class="network-chip">TESTNET</span>
+            </div>
+
+            <div class="student-mini">
+                <div class="avatar">JM</div>
+                <div class="student-mini-copy">
+                    <strong>Javier Mora</strong>
+                    <span>Estudiante activo</span>
+                </div>
+                <button class="icon-btn" aria-label="Más opciones">•••</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <button class="mobile-menu" id="mobileMenu" aria-label="Abrir menú">☰</button>
+                <div class="topbar-title">
+                    <span class="eyebrow">Portal académico verificable</span>
+                    <h1 id="pageTitle">Buenos días, Javier</h1>
+                </div>
+                <div class="topbar-actions">
+                    <div class="demo-pill">
+                        <span></span>
+                        Prototipo demostrativo
+                    </div>
+                    <div class="notification-wrap">
+                        <button class="icon-btn notification-btn" id="notificationBtn" aria-label="Notificaciones">
+                            ♢
+                            <i id="notificationDot" class="hidden"></i>
+                            <span class="notification-count hidden" id="notificationCount">1</span>
+                        </button>
+
+                        <div class="notification-panel hidden" id="notificationPanel">
+                            <div class="notification-panel-head">
+                                <div>
+                                    <span class="section-kicker">Centro de actividad</span>
+                                    <strong>Notificaciones</strong>
+                                </div>
+                                <span class="notification-status">Demo</span>
+                            </div>
+
+                            <div class="notification-empty" id="notificationEmpty">
+                                <span>♢</span>
+                                <strong>No tienes notificaciones nuevas</strong>
+                                <small>Las respuestas de Registro aparecerán aquí.</small>
+                            </div>
+
+                            <button class="notification-item hidden" id="requestNotification">
+                                <div class="notification-item-icon">✓</div>
+                                <div>
+                                    <strong>Tu certificado está listo</strong>
+                                    <p>Registro Académico respondió la solicitud <span
+                                            id="notificationRequestId">SOL-2026-01984</span>.</p>
+                                    <small>Ahora · Haz clic para abrir el certificado de prueba</small>
+                                </div>
+                                <span class="notification-arrow">›</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="demo-notice">
+                <strong>Demo conceptual:</strong>
+                esta interfaz simula registros blockchain y no publica información en una red real.
+            </div>
+
+            <!-- DASHBOARD -->
+            <section class="page-section active" id="dashboard">
+                <div class="hero-card">
+                    <div class="hero-copy">
+                        <div class="hero-badge">
+                            <span class="pulse"></span>
+                            Credenciales académicas del futuro
+                        </div>
+                        <h2>Tu trayectoria académica, <span>verificable en segundos.</span></h2>
+                        <p>
+                            Diplomas, certificados y constancias académicas protegidos con registros
+                            verificables, disponibles para compartir globalmente sin procesos manuales.
+                        </p>
+                        <div class="hero-actions">
+                            <button class="btn primary" data-jump="wallet">Ver mi wallet</button>
+                            <button class="btn ghost" data-jump="verify">Verificar documento</button>
+                        </div>
+                        <div class="hero-trust">
+                            <div class="trust-item">
+                                <strong>2</strong>
+                                <span>Credenciales verificadas</span>
+                            </div>
+                            <div class="trust-separator"></div>
+                            <div class="trust-item">
+                                <strong>&lt; 5s</strong>
+                                <span>Tiempo de verificación</span>
+                            </div>
+                            <div class="trust-separator"></div>
+                            <div class="trust-item">
+                                <strong>24/7</strong>
+                                <span>Acceso internacional</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-visual" aria-hidden="true">
+                        <div class="orb orb-one"></div>
+                        <div class="orb orb-two"></div>
+                        <div class="blockchain-grid">
+                            <div class="chain-node node-a">
+                                <span>01</span>
+                                <small>Issued</small>
+                            </div>
+                            <div class="chain-line line-one"></div>
+                            <div class="chain-node node-b">
+                                <span>02</span>
+                                <small>Hashed</small>
+                            </div>
+                            <div class="chain-line line-two"></div>
+                            <div class="chain-node node-c">
+                                <span>03</span>
+                                <small>Verified</small>
+                            </div>
+                        </div>
+                        <div class="floating-credential">
+                            <div class="cred-header">
+                                <div class="mini-seal">UP</div>
+                                <div>
+                                    <small>Digital Credential</small>
+                                    <strong>Master of Arts</strong>
+                                </div>
+                                <span class="verified-icon">✓</span>
+                            </div>
+                            <div class="cred-body">
+                                <span>Javier Mora Rodríguez</span>
+                                <div class="fake-lines"><i></i><i></i><i></i></div>
+                            </div>
+                            <div class="cred-footer">
+                                <span>Blockchain verified</span>
+                                <code>0x81...4a9c</code>
+                            </div>
+                        </div>
+                        <div class="glass-note">
+                            <span class="shield">✓</span>
+                            <div>
+                                <strong>Autenticidad confirmada</strong>
+                                <small>Registro inmutable encontrado</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metrics-grid">
+                    <article class="metric-card">
+                        <div class="metric-icon blue">▣</div>
+                        <div>
+                            <span>Credenciales</span>
+                            <strong>2</strong>
+                            <small>100% verificadas</small>
+                        </div>
+                    </article>
+                    <article class="metric-card">
+                        <div class="metric-icon green">✓</div>
+                        <div>
+                            <span>Verificaciones</span>
+                            <strong>14</strong>
+                            <small>Últimos 90 días</small>
+                        </div>
+                    </article>
+                    <article class="metric-card">
+                        <div class="metric-icon violet">⌁</div>
+                        <div>
+                            <span>Solicitudes</span>
+                            <strong>1</strong>
+                            <small>En procesamiento</small>
+                        </div>
+                    </article>
+                    <article class="metric-card">
+                        <div class="metric-icon amber">⚡</div>
+                        <div>
+                            <span>Última actividad</span>
+                            <strong>Hoy</strong>
+                            <small>09:42 AM</small>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="dashboard-grid">
+                    <article class="panel">
+                        <div class="panel-heading">
+                            <div>
+                                <span class="section-kicker">Wallet</span>
+                                <h3>Mis credenciales</h3>
+                            </div>
+                            <button class="text-btn" data-jump="wallet">Ver todas →</button>
+                        </div>
+
+                        <div class="credential-list">
+                            <button class="credential-row" data-open-credential="master">
+                                <div class="credential-seal">M</div>
+                                <div class="credential-main">
+                                    <strong>Master of Arts in International Peace Studies</strong>
+                                    <span>Emitido · 18 junio 2026</span>
+                                </div>
+                                <span class="badge verified">✓ Verificado</span>
+                                <span class="row-arrow">›</span>
+                            </button>
+
+                            <button class="credential-row" data-open-credential="certificate">
+                                <div class="credential-seal alt">C</div>
+                                <div class="credential-main">
+                                    <strong>Certificate in Human Rights & Peace Education</strong>
+                                    <span>Emitido · 03 diciembre 2025</span>
+                                </div>
+                                <span class="badge verified">✓ Verificado</span>
+                                <span class="row-arrow">›</span>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="panel activity-panel">
+                        <div class="panel-heading">
+                            <div>
+                                <span class="section-kicker">Actividad</span>
+                                <h3>Registro reciente</h3>
+                            </div>
+                        </div>
+
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-dot"></span>
+                                <div>
+                                    <strong>Diploma verificado</strong>
+                                    <p>Consulta pública desde San José, Costa Rica</p>
+                                    <small>Hoy · 09:42</small>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-dot"></span>
+                                <div>
+                                    <strong>Solicitud creada</strong>
+                                    <p>Certificado oficial de notas</p>
+                                    <small>Ayer · 15:18</small>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-dot"></span>
+                                <div>
+                                    <strong>Credencial compartida</strong>
+                                    <p>Enlace seguro generado por 72 horas</p>
+                                    <small>08 sep · 11:04</small>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- WALLET -->
+            <section class="page-section" id="wallet">
+                <div class="section-header">
+                    <div>
+                        <span class="eyebrow">Mi identidad académica</span>
+                        <h2>Wallet de credenciales</h2>
+                        <p>Consulta, comparte y verifica tus títulos y certificaciones emitidas por UPAZ.</p>
+                    </div>
+                    <button class="btn secondary" id="shareWalletBtn">Compartir wallet</button>
+                </div>
+
+                <div class="wallet-layout">
+                    <div class="digital-id">
+                        <div class="digital-id-top">
+                            <img src="https://moria.aurens.com/organizations/977f05bc-2c7d-4b08-9d7a-5b0453e40642/logos/847027-104.png"
+                                alt="UPAZ" />
+                            <span>ACADEMIC ID</span>
+                        </div>
+                        <div class="digital-id-body">
+                            <div class="id-avatar">JM</div>
+                            <div>
+                                <small>ESTUDIANTE</small>
+                                <h3>Javier Mora Rodríguez</h3>
+                                <p>MA International Peace Studies</p>
+                            </div>
+                        </div>
+                        <div class="digital-id-meta">
+                            <div><span>Student ID</span><strong>UPZ-2025-04821</strong></div>
+                            <div><span>Estado</span><strong class="active-text">● Activo</strong></div>
+                        </div>
+                        <div class="digital-id-chain">
+                            <span>DID</span>
+                            <code>did:upeace:7f3a91...d821</code>
+                        </div>
+                    </div>
+
+                    <div class="wallet-summary panel">
+                        <span class="section-kicker">Resumen</span>
+                        <h3>Tu identidad académica está protegida</h3>
+                        <p>
+                            Cada credencial contiene una huella digital única que permite comprobar que
+                            el documento coincide con el registro emitido por la universidad.
+                        </p>
+                        <div class="security-list">
+                            <div><span>✓</span> Integridad verificable</div>
+                            <div><span>✓</span> Compartible internacionalmente</div>
+                            <div><span>✓</span> Validación sin contactar a Registro</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-subheading">
+                    <div>
+                        <span class="section-kicker">Credenciales emitidas</span>
+                        <h3>Documentos en tu wallet</h3>
+                    </div>
+                    <div class="filter-chips">
+                        <button class="filter-chip active">Todos</button>
+                        <button class="filter-chip">Títulos</button>
+                        <button class="filter-chip">Certificados</button>
+                    </div>
+                </div>
+
+                <div class="wallet-cards">
+                    <article class="wallet-card" data-open-credential="master">
+                        <div class="wallet-card-top">
+                            <div class="credential-seal large">M</div>
+                            <span class="badge verified">✓ Verificado</span>
+                        </div>
+                        <span class="credential-type">Título universitario</span>
+                        <h3>Master of Arts in International Peace Studies</h3>
+                        <p>University for Peace · Naciones Unidas</p>
+                        <div class="wallet-card-footer">
+                            <div>
+                                <small>Emitido</small>
+                                <strong>18 Jun 2026</strong>
+                            </div>
+                            <div>
+                                <small>Blockchain</small>
+                                <code>0x81b4...4a9c</code>
+                            </div>
+                            <button aria-label="Abrir credencial">↗</button>
+                        </div>
+                    </article>
+
+                    <article class="wallet-card certificate" data-open-credential="certificate">
+                        <div class="wallet-card-top">
+                            <div class="credential-seal large alt">C</div>
+                            <span class="badge verified">✓ Verificado</span>
+                        </div>
+                        <span class="credential-type">Certificación académica</span>
+                        <h3>Certificate in Human Rights & Peace Education</h3>
+                        <p>University for Peace · Department of Peace and Conflict Studies</p>
+                        <div class="wallet-card-footer">
+                            <div>
+                                <small>Emitido</small>
+                                <strong>03 Dic 2025</strong>
+                            </div>
+                            <div>
+                                <small>Blockchain</small>
+                                <code>0x4fd2...bc11</code>
+                            </div>
+                            <button aria-label="Abrir credencial">↗</button>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- REQUEST -->
+            <section class="page-section" id="request">
+                <div class="section-header">
+                    <div>
+                        <span class="eyebrow">Servicios de Registro</span>
+                        <h2>Solicitar certificado académico</h2>
+                        <p>Genera una constancia oficial con comprobación digital de autenticidad.</p>
+                    </div>
+                </div>
+
+                <div class="request-layout">
+                    <form class="panel request-form" id="certificateForm">
+                        <div class="form-progress">
+                            <div class="progress-step active"><span>1</span><small>Documento</small></div>
+                            <i></i>
+                            <div class="progress-step"><span>2</span><small>Configuración</small></div>
+                            <i></i>
+                            <div class="progress-step"><span>3</span><small>Confirmación</small></div>
+                        </div>
+
+                        <div class="form-block">
+                            <label for="certificateType">Tipo de documento</label>
+                            <div class="select-wrap">
+                                <select id="certificateType">
+                                    <option>Certificado oficial de notas</option>
+                                    <option>Constancia de estudiante activo</option>
+                                    <option>Certificación de conclusión de estudios</option>
+                                    <option>Historial académico oficial</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-block">
+                                <label for="language">Idioma</label>
+                                <select id="language">
+                                    <option>Español</option>
+                                    <option>English</option>
+                                </select>
+                            </div>
+                            <div class="form-block">
+                                <label for="purpose">Uso del documento</label>
+                                <select id="purpose">
+                                    <option>Proceso laboral</option>
+                                    <option>Continuidad académica</option>
+                                    <option>Trámite migratorio</option>
+                                    <option>Uso personal</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-block">
+                            <label>Formato de entrega</label>
+                            <div class="choice-grid">
+                                <label class="choice-card selected">
+                                    <input type="radio" name="format" value="digital" checked />
+                                    <span class="choice-icon">◆</span>
+                                    <div>
+                                        <strong>Digital verificable</strong>
+                                        <small>PDF + hash + código QR</small>
+                                    </div>
+                                    <span class="choice-check">✓</span>
+                                </label>
+                                <label class="choice-card">
+                                    <input type="radio" name="format" value="digital-physical" />
+                                    <span class="choice-icon">▤</span>
+                                    <div>
+                                        <strong>Digital + físico</strong>
+                                        <small>Incluye copia impresa</small>
+                                    </div>
+                                    <span class="choice-check">✓</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <span>i</span>
+                            <p>
+                                Al finalizar, el sistema generará una huella criptográfica única del documento
+                                para simular su registro en la red académica.
+                            </p>
+                        </div>
+
+                        <button class="btn primary wide" id="submitCertificateRequest" type="submit">Enviar
+                            solicitud</button>
+
+                        <div class="request-status hidden" id="requestStatus">
+                            <div class="request-status-icon">⌁</div>
+                            <div>
+                                <span>Solicitud enviada</span>
+                                <strong id="requestStatusId">SOL-2026-01984</strong>
+                                <small id="requestStatusText">Procesando respuesta de Registro Académico…</small>
+                            </div>
+                            <span class="request-status-pill" id="requestStatusPill">En proceso</span>
+                        </div>
+                    </form>
+
+                    <aside class="request-preview">
+                        <div class="document-preview">
+                            <div class="doc-top">
+                                <img src="https://moria.aurens.com/organizations/977f05bc-2c7d-4b08-9d7a-5b0453e40642/logos/847027-104.png"
+                                    alt="UPAZ" />
+                                <span>OFFICIAL TRANSCRIPT</span>
+                            </div>
+                            <div class="doc-content">
+                                <h4>Academic Record</h4>
+                                <p>Javier Mora Rodríguez</p>
+                                <div class="doc-line long"></div>
+                                <div class="doc-line"></div>
+                                <div class="doc-line medium"></div>
+                                <div class="doc-table">
+                                    <span></span><span></span><span></span>
+                                    <span></span><span></span><span></span>
+                                    <span></span><span></span><span></span>
+                                </div>
+                            </div>
+                            <div class="doc-verification">
+                                <div class="tiny-qr" id="previewQr"></div>
+                                <div>
+                                    <strong>Blockchain verified</strong>
+                                    <small>Hash: 0x8f7c...2d1e</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="preview-caption">
+                            <span>✓</span>
+                            <div>
+                                <strong>Verificable desde cualquier país</strong>
+                                <p>El receptor solo necesita el PDF, el hash o el QR.</p>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+
+            <!-- VERIFY -->
+            <section class="page-section" id="verify">
+                <div class="public-verify-hero">
+                    <span class="eyebrow">Acceso público · Sin iniciar sesión</span>
+                    <h2>Verificar una credencial UPAZ</h2>
+                    <p>
+                        Confirma en segundos si un título, certificado o constancia coincide con
+                        un registro académico emitido por la Universidad para la Paz.
+                    </p>
+                </div>
+
+                <div class="verify-shell panel">
+                    <div class="verify-tabs" role="tablist">
+                        <button class="verify-tab active" data-verify-tab="pdf">Subir PDF</button>
+                        <button class="verify-tab" data-verify-tab="hash">Ingresar hash</button>
+                        <button class="verify-tab" data-verify-tab="credential">ID de credencial</button>
+                    </div>
+
+                    <div class="verify-pane active" id="verify-pdf">
+                        <label class="dropzone" id="dropzone">
+                            <input type="file" id="pdfInput" accept=".pdf,application/pdf" hidden />
+                            <div class="upload-icon">↑</div>
+                            <strong>Arrastra un documento PDF aquí</strong>
+                            <span>o haz clic para seleccionar el archivo</span>
+                            <small>Máximo 20 MB · Solo documentos PDF</small>
+                        </label>
+                        <div class="selected-file hidden" id="selectedFile">
+                            <div class="file-icon">PDF</div>
+                            <div>
+                                <strong id="selectedFileName">documento.pdf</strong>
+                                <small>Listo para verificar</small>
+                            </div>
+                            <span>✓</span>
+                        </div>
+                        <div class="demo-test-hint">
+                            <span>Demo</span>
+                            <p>Para simular un PDF válido usa un nombre que contenga <code>upeace</code>,
+                                <code>titulo</code> o <code>certificado</code>. Cualquier otro PDF mostrará el escenario
+                                inválido.
+                            </p>
+                        </div>
+                        <button class="btn primary wide" id="verifyPdfBtn">Verificar documento</button>
+                    </div>
+
+                    <div class="verify-pane" id="verify-hash">
+                        <div class="form-block">
+                            <label for="hashInput">Hash de blockchain</label>
+                            <div class="input-with-icon">
+                                <span>#</span>
+                                <input id="hashInput" type="text" placeholder="Ej. 0x81b4c92f...4a9c" />
+                            </div>
+                            <small class="help-text">Hash válido de prueba: <code>0x81b4c92f6d77fa890e4d4a9c</code>.
+                                Cualquier otro valor mostrará el escenario inválido.</small>
+                        </div>
+                        <button class="btn primary wide" id="verifyHashBtn">Buscar en la red</button>
+                    </div>
+
+                    <div class="verify-pane" id="verify-credential">
+                        <div class="form-block">
+                            <label for="credentialInput">ID de credencial</label>
+                            <div class="input-with-icon">
+                                <span>ID</span>
+                                <input id="credentialInput" type="text" placeholder="Ej. UPAZ-MA-2026-004821" />
+                            </div>
+                        </div>
+                        <button class="btn primary wide" id="verifyCredentialBtn">Verificar credencial</button>
+                    </div>
+
+                    <div class="verify-result hidden" id="verifyResult">
+                        <div class="result-top">
+                            <div class="success-badge">✓</div>
+                            <div>
+                                <span class="section-kicker">Registro encontrado</span>
+                                <h3>Credencial auténtica</h3>
+                                <p>La información coincide con el registro académico simulado.</p>
+                            </div>
+                            <span class="badge verified">✓ Verificada</span>
+                        </div>
+
+                        <div class="result-grid">
+                            <div>
+                                <small>Titular</small>
+                                <strong>Javier Mora Rodríguez</strong>
+                            </div>
+                            <div>
+                                <small>Documento</small>
+                                <strong>MA International Peace Studies</strong>
+                            </div>
+                            <div>
+                                <small>Emisor</small>
+                                <strong>University for Peace</strong>
+                            </div>
+                            <div>
+                                <small>Fecha de emisión</small>
+                                <strong>18 junio 2026</strong>
+                            </div>
+                        </div>
+
+                        <div class="block-data">
+                            <div class="block-data-heading">
+                                <span>Datos del registro blockchain</span>
+                                <span class="network-chip">UPAZ TESTNET</span>
+                            </div>
+                            <div class="block-data-row"><span>Transaction
+                                    hash</span><code>0x81b4c92f6d77fa890e4d...4a9c</code><button
+                                    data-copy="0x81b4c92f6d77fa890e4d4a9c">Copiar</button></div>
+                            <div class="block-data-row"><span>Block</span><code>#8,421,907</code><button
+                                    data-copy="8421907">Copiar</button></div>
+                            <div class="block-data-row">
+                                <span>Timestamp</span><code>2026-06-18 14:32:08 UTC</code><button
+                                    data-copy="2026-06-18 14:32:08 UTC">Copiar</button>
+                            </div>
+                            <div class="block-data-row"><span>Document
+                                    hash</span><code>sha256:29c7fa...d13e</code><button
+                                    data-copy="sha256:29c7fad13e">Copiar</button></div>
+                        </div>
+                    </div>
+
+                    <div class="verify-result invalid-result hidden" id="verifyInvalidResult">
+                        <div class="result-top">
+                            <div class="error-badge">!</div>
+                            <div>
+                                <span class="section-kicker danger-kicker">Verificación fallida</span>
+                                <h3 id="invalidResultTitle">No se encontró un registro válido</h3>
+                                <p id="invalidResultMessage">El documento no coincide con ninguna credencial emitida en
+                                    la red académica simulada.</p>
+                            </div>
+                            <span class="badge invalid-badge">✕ No verificada</span>
+                        </div>
+
+                        <div class="invalid-alert">
+                            <span>!</span>
+                            <div>
+                                <strong>Este resultado no significa automáticamente que exista fraude.</strong>
+                                <p>El archivo podría pertenecer a otra institución, haber sido modificado o contener un
+                                    identificador incorrecto.</p>
+                            </div>
+                        </div>
+
+                        <div class="block-data invalid-data">
+                            <div class="block-data-heading">
+                                <span>Diagnóstico de verificación</span>
+                                <span class="network-chip danger-chip">NO MATCH</span>
+                            </div>
+                            <div class="block-data-row"><span>Entrada analizada</span><code
+                                    id="invalidInputValue">—</code></div>
+                            <div class="block-data-row"><span>Resultado</span><code
+                                    class="danger-text">RECORD_NOT_FOUND</code></div>
+                            <div class="block-data-row"><span>Coincidencia</span><code>0 registros</code></div>
+                            <div class="block-data-row">
+                                <span>Recomendación</span><code>Verificar el documento con la institución emisora</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="verification-benefits">
+                    <div><span>01</span><strong>Privacidad</strong>
+                        <p>No exponemos notas ni datos sensibles durante la consulta pública.</p>
+                    </div>
+                    <div><span>02</span><strong>Integridad</strong>
+                        <p>Cualquier alteración del documento produciría una huella digital diferente.</p>
+                    </div>
+                    <div><span>03</span><strong>Disponibilidad</strong>
+                        <p>La validación puede realizarse 24/7 sin depender de una respuesta manual.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- QR -->
+            <section class="page-section" id="qr">
+                <div class="section-header">
+                    <div>
+                        <span class="eyebrow">Verificación móvil</span>
+                        <h2>Escanear código QR</h2>
+                        <p>Simula la lectura del QR impreso en una credencial académica.</p>
+                    </div>
+                </div>
+
+                <div class="qr-layout">
+                    <div class="scanner-card">
+                        <div class="scanner-frame">
+                            <div class="corner tl"></div>
+                            <div class="corner tr"></div>
+                            <div class="corner bl"></div>
+                            <div class="corner br"></div>
+                            <div class="scan-line"></div>
+                            <div class="qr-placeholder" id="mainQr"></div>
+                        </div>
+                        <div class="scanner-copy">
+                            <strong>Apunta la cámara al código QR</strong>
+                            <p>Para este prototipo, puedes simular el escaneo.</p>
+                        </div>
+                        <button class="btn primary" id="scanQrBtn">Simular escaneo</button>
+                    </div>
+
+                    <div class="scan-result panel" id="scanResult">
+                        <div class="empty-state" id="scanEmpty">
+                            <div class="empty-icon">⌗</div>
+                            <h3>Esperando escaneo</h3>
+                            <p>Los datos verificables aparecerán aquí cuando se lea una credencial.</p>
+                        </div>
+
+                        <div class="scan-data hidden" id="scanData">
+                            <div class="scan-data-head">
+                                <div class="success-badge">✓</div>
+                                <div>
+                                    <span class="section-kicker">QR reconocido</span>
+                                    <h3>Registro académico válido</h3>
+                                </div>
+                            </div>
+
+                            <div class="identity-card">
+                                <div class="credential-seal large">M</div>
+                                <div>
+                                    <small>TITULAR</small>
+                                    <strong>Javier Mora Rodríguez</strong>
+                                    <span>Master of Arts in International Peace Studies</span>
+                                </div>
+                                <span class="badge verified">✓ Verified</span>
+                            </div>
+
+                            <div class="chain-visual">
+                                <div class="chain-step complete"><span>✓</span><small>QR leído</small></div>
+                                <i></i>
+                                <div class="chain-step complete"><span>✓</span><small>Hash calculado</small></div>
+                                <i></i>
+                                <div class="chain-step complete"><span>✓</span><small>Registro hallado</small></div>
+                            </div>
+
+                            <div class="block-data compact">
+                                <div class="block-data-row"><span>Network</span><code>UPAZ Academic Testnet</code></div>
+                                <div class="block-data-row"><span>Block</span><code>#8,421,907</code></div>
+                                <div class="block-data-row"><span>Hash</span><code>0x81b4...4a9c</code></div>
+                                <div class="block-data-row"><span>Status</span><code
+                                        class="active-text">CONFIRMED</code></div>
+                            </div>
+
+                            <button class="btn secondary wide" data-jump="verify">Abrir verificación completa</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Credential modal -->
+    <div class="modal-backdrop hidden" id="credentialModal" role="dialog" aria-modal="true">
+        <div class="modal-card">
+            <button class="modal-close" id="closeCredentialModal" aria-label="Cerrar">×</button>
+            <div class="modal-credential-header">
+                <div class="credential-seal large" id="modalSeal">M</div>
+                <div>
+                    <span class="section-kicker">Credencial verificable</span>
+                    <h3 id="modalTitle">Master of Arts in International Peace Studies</h3>
+                    <p id="modalSubtitle">University for Peace · 18 June 2026</p>
+                </div>
+                <span class="badge verified">✓ Verificado</span>
+            </div>
+
+            <div class="credential-detail-grid">
+                <div><small>Titular</small><strong>Javier Mora Rodríguez</strong></div>
+                <div><small>ID de credencial</small><strong id="modalId">UPAZ-MA-2026-004821</strong></div>
+                <div><small>Fecha de emisión</small><strong id="modalDate">18 junio 2026</strong></div>
+                <div><small>Estado</small><strong class="active-text">Válida</strong></div>
+            </div>
+
+            <div class="modal-blockchain">
+                <div>
+                    <span class="section-kicker">Prueba de integridad</span>
+                    <h4>Registro blockchain</h4>
+                </div>
+                <code id="modalHash">0x81b4c92f6d77fa890e4d...4a9c</code>
+                <div class="confirmation-row">
+                    <span>01 Documento emitido</span>
+                    <i></i>
+                    <span>02 Hash generado</span>
+                    <i></i>
+                    <span>03 Registro confirmado</span>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn secondary" id="copyCredentialLink">Copiar enlace verificable</button>
+                <button class="btn primary" data-jump="verify" id="verifyFromModal">Verificar públicamente</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Test certificate modal generated from a simulated request -->
+    <div class="modal-backdrop hidden" id="testCertificateModal" role="dialog" aria-modal="true">
+        <div class="modal-card certificate-modal-card">
+            <button class="modal-close" id="closeTestCertificateModal" aria-label="Cerrar">×</button>
+
+            <div class="test-cert-banner">
+                <span>DEMO</span>
+                <div>
+                    <strong>Certificado de prueba ficticio</strong>
+                    <small>No representa un documento real emitido por la Universidad para la Paz.</small>
+                </div>
+            </div>
+
+            <div class="test-certificate-paper">
+                <div class="test-cert-header">
+                    <img src="https://moria.aurens.com/organizations/977f05bc-2c7d-4b08-9d7a-5b0453e40642/logos/847027-104.png"
+                        alt="Universidad para la Paz" />
+                    <span>REGISTRO ACADÉMICO · PROTOTIPO</span>
+                </div>
+
+                <div class="test-cert-body">
+                    <span class="test-cert-overline">CERTIFICADO DIGITAL DEMOSTRATIVO</span>
+                    <h2>Certificado de prueba ficticio</h2>
+                    <p>Se hace constar, únicamente para fines de demostración del prototipo, que</p>
+                    <h3>Valeria Solís Herrera</h3>
+                    <p>figura como titular ficticia del documento</p>
+                    <strong>“Introducción a Innovación y Paz Digital — Demo”</strong>
+                    <p class="test-cert-disclaimer">Los nombres, identificadores, fechas y registros mostrados en este
+                        certificado fueron inventados para la demostración de la interfaz.</p>
+                </div>
+
+                <div class="test-cert-meta">
+                    <div><span>ID ficticio</span><strong>UPAZ-DEMO-2026-0001</strong></div>
+                    <div><span>Fecha de prueba</span><strong>11 septiembre 2026</strong></div>
+                    <div><span>Estado</span><strong class="active-text">DEMO CONFIRMADA</strong></div>
+                </div>
+
+                <div class="test-cert-chain">
+                    <div class="tiny-qr" id="testCertificateQr"></div>
+                    <div>
+                        <span>Hash de prueba</span>
+                        <code>0xd3a09f24c7e6418b55f0a1129e7c2026</code>
+                        <small>UPAZ Academic Testnet · bloque ficticio #9,000,001</small>
+                    </div>
+                    <span class="badge verified">✓ Demo verificada</span>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn secondary" id="copyTestHash">Copiar hash de prueba</button>
+                <button class="btn primary" id="closeTestCertificateAction">Cerrar certificado</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <div>
+            <strong id="toastTitle">Listo</strong>
+            <small id="toastMessage">Acción completada correctamente.</small>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
